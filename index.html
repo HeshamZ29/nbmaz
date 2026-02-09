@@ -1,0 +1,993 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>مزادك | منصة المزادات الآمنة — دراسة جدوى ومستند المستثمر</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700;800&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --primary: #0d5c2e;
+      --primary-light: #117a3d;
+      --gold: #c9a227;
+      --gold-light: #e5c158;
+      --dark: #1a365d;
+      --dark-light: #2c5282;
+      --light: #f7fafc;
+      --white: #ffffff;
+      --shadow: 0 10px 40px rgba(13, 92, 46, 0.12);
+      --radius: 16px;
+      --transition: 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: 'Tajawal', sans-serif;
+      background: var(--light);
+      color: var(--dark);
+      line-height: 1.7;
+      overflow-x: hidden;
+    }
+
+    /* Header & Logo */
+    .header {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 1000;
+      background: rgba(255,255,255,0.95);
+      backdrop-filter: blur(12px);
+      box-shadow: 0 2px 20px rgba(0,0,0,0.06);
+      transition: var(--transition);
+    }
+
+    .header-inner {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 1rem 1.5rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .logo-area {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .logo-placeholder {
+      width: 52px;
+      height: 52px;
+      background: linear-gradient(135deg, var(--primary) 0%, var(--primary-light) 100%);
+      border-radius: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--gold);
+      font-size: 1.5rem;
+      font-weight: 800;
+      box-shadow: 0 4px 14px rgba(13, 92, 46, 0.35);
+      transition: var(--transition);
+    }
+
+    .logo-placeholder:hover {
+      transform: scale(1.05) rotate(-3deg);
+      box-shadow: 0 6px 20px rgba(13, 92, 46, 0.45);
+    }
+
+    /* يمكن استبدال .logo-placeholder بـ صورة الشعار: ضع <img src="logo.png" alt="مزادك" class="logo-img"> داخل .logo-area */
+    .logo-img {
+      height: 52px;
+      width: auto;
+      object-fit: contain;
+    }
+
+    .brand-name {
+      font-size: 1.5rem;
+      font-weight: 800;
+      color: var(--primary);
+    }
+
+    .brand-name span { color: var(--gold); }
+
+    nav {
+      display: flex;
+      gap: 1.5rem;
+    }
+
+    nav a {
+      text-decoration: none;
+      color: var(--dark);
+      font-weight: 500;
+      padding: 0.5rem 0;
+      position: relative;
+      transition: var(--transition);
+    }
+
+    nav a::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      right: 0;
+      width: 0;
+      height: 2px;
+      background: var(--gold);
+      transition: var(--transition);
+    }
+
+    nav a:hover { color: var(--primary); }
+    nav a:hover::after { width: 100%; }
+
+    /* Slider */
+    .hero {
+      margin-top: 80px;
+      position: relative;
+      min-height: 420px;
+      overflow: hidden;
+    }
+
+    .slider-wrap {
+      position: relative;
+      width: 100%;
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 60px;
+    }
+
+    .slider {
+      display: flex;
+      align-items: center;
+      gap: 20px;
+      overflow-x: auto;
+      scroll-snap-type: x mandatory;
+      scroll-behavior: smooth;
+      padding: 2rem 0;
+      scrollbar-width: none;
+      -ms-overflow-style: none;
+    }
+
+    .slider::-webkit-scrollbar { display: none; }
+
+    .slide {
+      flex: 0 0 100%;
+      scroll-snap-align: center;
+      min-height: 340px;
+      border-radius: var(--radius);
+      background: linear-gradient(135deg, var(--primary) 0%, var(--dark) 100%);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--white);
+      font-size: 1.5rem;
+      font-weight: 700;
+      text-align: center;
+      padding: 3rem;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .slide::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      z-index: 0;
+      background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.06'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+      opacity: 0.5;
+    }
+
+    .slide img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      position: absolute;
+      inset: 0;
+      z-index: 0;
+    }
+
+    /* طبقة داكنة فوق الصورة لقراءة النص */
+    .slide::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(to top, rgba(0,0,0,0.65) 0%, rgba(0,0,0,0.2) 50%, transparent 100%);
+      z-index: 1;
+      pointer-events: none;
+    }
+
+    .slide-content { position: relative; z-index: 2; text-shadow: 0 2px 12px rgba(0,0,0,0.5); }
+
+    .slider-btn {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      width: 48px;
+      height: 48px;
+      border-radius: 50%;
+      background: var(--white);
+      border: none;
+      box-shadow: var(--shadow);
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--primary);
+      font-size: 1.25rem;
+      transition: var(--transition);
+      z-index: 10;
+    }
+
+    .slider-btn:hover {
+      background: var(--gold);
+      color: var(--white);
+      transform: translateY(-50%) scale(1.08);
+    }
+
+    .slider-btn.prev { right: 0; }
+    .slider-btn.next { left: 0; }
+
+    .slider-dots {
+      display: flex;
+      justify-content: center;
+      gap: 8px;
+      margin-top: 1rem;
+    }
+
+    .slider-dots button {
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      border: none;
+      background: #cbd5e0;
+      cursor: pointer;
+      transition: var(--transition);
+    }
+
+    .slider-dots button.active {
+      background: var(--primary);
+      transform: scale(1.2);
+    }
+
+    .slider-dots button:hover { background: var(--gold); }
+
+    /* Sections */
+    section {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 4rem 1.5rem;
+    }
+
+    .section-title {
+      font-size: 2rem;
+      font-weight: 800;
+      color: var(--primary);
+      margin-bottom: 1rem;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .section-title::before {
+      content: '';
+      width: 6px;
+      height: 2rem;
+      background: linear-gradient(180deg, var(--primary), var(--gold));
+      border-radius: 3px;
+    }
+
+    .section-subtitle {
+      color: var(--dark-light);
+      font-size: 1.1rem;
+      margin-bottom: 2rem;
+    }
+
+    .card {
+      background: var(--white);
+      border-radius: var(--radius);
+      padding: 2rem;
+      box-shadow: var(--shadow);
+      margin-bottom: 1.5rem;
+      transition: var(--transition);
+      border: 1px solid rgba(13, 92, 46, 0.08);
+    }
+
+    .card:hover {
+      transform: translateY(-6px);
+      box-shadow: 0 20px 50px rgba(13, 92, 46, 0.18);
+      border-color: rgba(201, 162, 39, 0.25);
+    }
+
+    .card h3 {
+      color: var(--primary);
+      font-size: 1.25rem;
+      margin-bottom: 0.75rem;
+    }
+
+    .grid-2 {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 1.5rem;
+    }
+
+    .feature-icon {
+      width: 56px;
+      height: 56px;
+      background: linear-gradient(135deg, var(--primary), var(--primary-light));
+      border-radius: 14px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--gold);
+      font-size: 1.5rem;
+      margin-bottom: 1rem;
+    }
+
+    /* Table */
+    .table-wrap {
+      overflow-x: auto;
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      background: var(--white);
+    }
+
+    th, td {
+      padding: 1rem 1.25rem;
+      text-align: right;
+      border-bottom: 1px solid #e2e8f0;
+    }
+
+    th {
+      background: var(--primary);
+      color: var(--white);
+      font-weight: 700;
+    }
+
+    tr:hover td { background: rgba(13, 92, 46, 0.04); }
+
+    .pros { color: var(--primary); }
+    .cons { color: #c53030; }
+
+    /* Tech badges */
+    .tech-badges {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-top: 1rem;
+    }
+
+    .badge {
+      display: inline-block;
+      padding: 0.5rem 1rem;
+      background: linear-gradient(135deg, var(--primary), var(--primary-light));
+      color: var(--white);
+      border-radius: 999px;
+      font-weight: 600;
+      font-size: 0.9rem;
+      transition: var(--transition);
+    }
+
+    .badge:hover {
+      transform: scale(1.05);
+      box-shadow: 0 4px 12px rgba(13, 92, 46, 0.3);
+    }
+
+    /* Animations */
+    .fade-in {
+      opacity: 0;
+      transform: translateY(24px);
+    }
+
+    .fade-in.visible {
+      opacity: 1;
+      transform: translateY(0);
+      transition: opacity 0.6s ease, transform 0.6s ease;
+    }
+
+    @keyframes subtle-float {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-6px); }
+    }
+
+    .slide:hover .slide-content { animation: subtle-float 2s ease-in-out infinite; }
+
+    /* CTA */
+    .cta-box {
+      background: linear-gradient(135deg, var(--primary) 0%, var(--dark) 100%);
+      color: var(--white);
+      padding: 3rem;
+      border-radius: var(--radius);
+      text-align: center;
+      margin-top: 2rem;
+    }
+
+    .cta-box h3 { color: var(--white); margin-bottom: 0.5rem; }
+    .cta-box p { opacity: 0.9; }
+
+    /* Footer */
+    footer {
+      background: var(--dark);
+      color: var(--white);
+      padding: 2rem 1.5rem;
+      text-align: center;
+      margin-top: 3rem;
+    }
+
+    footer a { color: var(--gold-light); }
+
+    /* Responsive */
+    @media (max-width: 768px) {
+      .header-inner { flex-direction: column; gap: 1rem; }
+      nav { flex-wrap: wrap; justify-content: center; }
+      .slider-wrap { padding: 0 44px; }
+      .slide { min-height: 280px; font-size: 1.2rem; }
+      section { padding: 2.5rem 1rem; }
+      .section-title { font-size: 1.5rem; }
+    }
+  </style>
+</head>
+<body>
+  <header class="header">
+    <div class="header-inner">
+      <!-- مساحة الشعار: استبدل .logo-placeholder بـ <img src="logo.png" alt="مزادك" class="logo-img"> -->
+      <div class="logo-area">
+        <div class="logo-placeholder" aria-hidden="true">م</div>
+        <span class="brand-name">مزادك <span>|</span> منصة المزادات</span>
+      </div>
+      <nav>
+        <a href="#about">عن المشروع</a>
+        <a href="#feasibility">الجدوى والعوائد</a>
+        <a href="#features">المميزات</a>
+        <a href="#competitors">المنافسون</a>
+        <a href="#tech">التقنيات</a>
+        <a href="#references">المراجع</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <!-- Hero Slider -->
+    <section class="hero">
+      <div class="slider-wrap">
+        <button type="button" class="slider-btn prev" aria-label="السابق">‹</button>
+        <!-- السلايدر: الصور من مجلد images/ — ضع فيها slide1.jpg, slide2.jpg, slide3.jpg, slide4.jpg -->
+        <div class="slider" id="slider">
+          <div class="slide">
+            <img src="images/slide1.jpg" alt="منصة مزادات آمنة في المملكة العربية السعودية">
+            <div class="slide-content">منصة مزادات آمنة ومنظمة للتجار وأصحاب الأعمال والعملاء في المملكة العربية السعودية</div>
+          </div>
+          <div class="slide">
+            <img src="images/slide2.jpg" alt="حوكمة المزادات ولوحة تحكم Laravel وتطبيق Flutter">
+            <div class="slide-content">حوكمة المزادات وبيئة تنافسية عادلة مع لوحة تحكم Laravel وتطبيق جوال Flutter</div>
+          </div>
+          <div class="slide">
+            <img src="images/slide3.jpg" alt="ربط إلكتروني مع بوابات الدفع والجهات الحكومية">
+            <div class="slide-content">ربط إلكتروني مع بوابات الدفع والجهات الحكومية وتجربة مستخدم احترافية</div>
+          </div>
+          <div class="slide">
+            <img src="images/slide4.jpg" alt="خدمة التسعير والتحليلات ونظام ERP">
+            <div class="slide-content">خدمة التسعير والتحليلات والمحاسبة والـ HR ضمن نظام ERP متكامل</div>
+          </div>
+        </div>
+        <button type="button" class="slider-btn next" aria-label="التالي">›</button>
+        <div class="slider-dots" id="sliderDots"></div>
+      </div>
+    </section>
+
+    <!-- About & Market Study -->
+    <section id="about" class="fade-in">
+      <h2 class="section-title">دراسة السوق والمشروع</h2>
+      <p class="section-subtitle">منصة مزادات إلكترونية لحوكمة المزادات في المملكة العربية السعودية، موجّهة للتجار وأصحاب الأعمال والعملاء.</p>
+      <div class="card">
+        <h3>الرؤية</h3>
+        <p>بناء منصة تنظم بيئة آمنة جداً للمزادات وتضمن المنافسة العادلة بين البائعين والمشترين، مع توفير أدوات إدارية متكاملة (ERP) تشمل المحاسبة والموارد البشرية وجميع أقسام المنشأة، وخدمة تسعير ذكية لتعزيز الثقة والشفافية.</p>
+      </div>
+      <div class="card">
+        <h3>دراسة السوق بالأرقام (بيانات 2024 ومصادر رسمية)</h3>
+        <ul style="margin: 1rem 0 0 1.25rem; line-height: 1.9;">
+          <li><strong>العقود الحكومية الجديدة (2024):</strong> بلغت قيمتها نحو <strong>38 مليار ريال سعودي</strong>، بنمو 18.75% عن 2023 (مصدر: الحكومة الرقمية / وزارة المالية).</li>
+          <li><strong>المنشآت الصغيرة والمتوسطة (SMEs):</strong> حصلت على نحو <strong>5,500 عقد</strong> تمثّل <strong>91%</strong> من إجمالي عدد العقود الحكومية، بقيمة <strong>9.1 مليار ريال</strong> (حوالي 24% من إجمالي الإنفاق). مساهمة الـ SMEs في الناتج المحلي ارتفعت من 20% إلى 29% مع هدف رؤية 2030 عند 35%.</li>
+          <li><strong>أوامر الشراء ضمن الاتفاقيات الإطارية:</strong> نمو 157% بقيمة 4.47 مليار ريال عبر 9,400 أمر شراء.</li>
+          <li><strong>كفاءة الإنفاق:</strong> حققت الجهات الحكومية وفراً مالياً يقدر بنحو مليار ريال في 2024 من تحسين إدارة الميزانيات.</li>
+          <li><strong>منصة اعتماد:</strong> البوابة الحكومية الموحدة للمنافسات والمشتريات والعقود والمدفوعات؛ توحيد الإجراءات ورفع الشفافية والوصول لأكبر شريحة موردين.</li>
+          <li><strong>سوق التجارة الإلكترونية السعودية:</strong> نمو متوقع ~10.21% ليصل إلى نحو 20.7 مليار دولار في 2024، مع توقعات أن يصل إلى 28.7 مليار دولار بحلول 2028.</li>
+          <li><strong>الضمان الابتدائي في المنافسات:</strong> نظام المنافسات والمشتريات الحكومية يطلب ضماناً ابتدائياً يتراوح بين 1% و2% من قيمة العرض.</li>
+        </ul>
+      </div>
+      <div class="card">
+        <h3>لماذا السوق السعودي والفرصة الآن؟</h3>
+        <p>حجم المشتريات العامة في المملكة يمثّل حصة كبيرة من الناتج المحلي. مشاريع رؤية 2030 والجيجا بروجكتات (نيوم، القدية، ريد Sea، إلخ) تخلق طلباً هائلاً على سلاسل إمداد وموردين مؤهلين في التشييد، النقل، السياحة، والتقنية. القرارات الوزارية تعطي أولوية للمحتوى المحلي والمنشآت الصغيرة والمتوسطة في المشتريات (مثل نظام تفضيل المحتوى المحلي والـ SMEs). أثر الرقمنة وفق دراسات استشارية: تقليل زمن دورة المشتريات، رفع عدد العطاءات المؤهلة، وتوفير 30%–50% من التكاليف وتسريع الدورة 30%–50%. المنصة تستهدف القطاع الخاص، غير الربحي، وشبه الحكومي، مع إمكانية التكامل لاحقاً مع بيئة اعتماد أو البناء عليها كقناة تكميلية.</p>
+      </div>
+    </section>
+
+    <!-- Feasibility & Returns -->
+    <section id="feasibility" class="fade-in">
+      <h2 class="section-title">الجدوى الاقتصادية والعوائد المتوقعة</h2>
+      <p class="section-subtitle">قنوات دخل متعددة ومفصّلة تعزز الجاذبية للمستثمر وتقلل الاعتماد على مصدر واحد.</p>
+
+      <div class="card">
+        <h3>١ — عمولات على المعاملات (Transaction Commission / Take Rate)</h3>
+        <p><strong>الوصف:</strong> نسبة مئوية من قيمة كل صفقة ناجحة (ترسية) تُخصم من البائع أو تُضاف للمشتري أو تُقسم بين الطرفين حسب السياسة.</p>
+        <ul style="margin: 0.75rem 0 0 1.25rem;">
+          <li><strong>معايير السوق:</strong> في أسواق B2B العالمية، عمولة المنصات التي تقدّم «مطابقة» (Matchmaking) بين مشترٍ ومورد تتراوح عادة بين <strong>1% و10%</strong> من قيمة المعاملة. المنصات التي تقدم بنية تحتية فقط قد تفرض 0.2%–1%، والمنصات ذات القيمة المضافة الأعلى (تحليلات، تسعير، ضمان) تبرر نسباً أعلى.</li>
+          <li><strong>اقتراح للمنصة:</strong> عمولة متدرجة حسب حجم الصفقة ونوع الخدمة، مثلاً: <strong>0.5%–1.5%</strong> للصفقات الكبرى (أعلى من مليون ريال)، <strong>1.5%–3%</strong> للصفقات المتوسطة، <strong>2%–4%</strong> للصفقات الأصغر أو للمزادات العكسية المتخصصة. يمكن ربط حد أقصى للعمولة بالريال لزيادة الجاذبية للصفقات الكبيرة.</li>
+          <li><strong>مثال تقديري:</strong> إذا بلغ حجم المعاملات السنوية عبر المنصة 100 مليون ريال ومتوسط العمولة 2%، فإن إيرادات العمولات وحدها = 2 مليون ريال سنوياً.</li>
+        </ul>
+      </div>
+
+      <div class="card">
+        <h3>٢ — رسوم الإدراج (Listing Fees)</h3>
+        <p><strong>الوصف:</strong> رسوم يدفعها البائع عند نشر منافسة أو طرح مزاد (قبل البيع). تُستخدم عالمياً لتنظيم جودة العروض وتوليد إيراد ثابت.</p>
+        <ul style="margin: 0.75rem 0 0 1.25rem;">
+          <li>رسوم ثابتة لكل منافسة (مثلاً 50–500 ريال حسب الفئة)، أو رسوم متدرجة حسب القيمة التقديرية للمنافسة.</li>
+          <li>باقات «منافسات غير محدودة» للبائعين النشطين كبديل أو مكمّل للعمولة.</li>
+        </ul>
+      </div>
+
+      <div class="card">
+        <h3>٣ — اشتراكات البائعين والمشترين (Subscription &amp; Membership)</h3>
+        <p><strong>الوصف:</strong> باقات شهرية أو سنوية للوصول لمميزات متقدمة (عدد منافسات، تقارير، ظهور، دعم).</p>
+        <p><strong>مرجع السوق المحلي:</strong></p>
+        <ul style="margin: 0.5rem 0 0 1.25rem;">
+          <li><strong>تندرز أليرتس (TendersAlerts):</strong> باقة سنوية 1,625 ريال (كانت 3,200)، نصف سنوية 895 ريال، ثنائية 2,750 ريال لـ 24 شهراً. المميزات: إشعارات اعتماد، عروض وترسيات سابقة، تصدير Excel، جداول كميات خلال 48 ساعة.</li>
+          <li><strong>مناقص (Munaqes):</strong> حساب فردي 3,150 ريال/سنوياً (خصم من 15,000)، باقة بلس 20,000 ريال/سنوياً (مدير + مستخدم)، باقة برو 30,000 ريال/سنوياً (مدير + 2 مستخدمين).</li>
+        </ul>
+        <p style="margin-top: 0.75rem;"><strong>اقتراح للمنصة:</strong> باقات متدرجة (أساسي / برو / enterprise) مع تحديد عدد المنافسات، التقارير، التكاملات، ودعم فني. مثال: أساسي 199–499 ريال/شهر، برو 499–999، enterprise حسب الطلب. خصم سنوي 15%–25% لتعزيز الالتزام طويل الأجل.</p>
+      </div>
+
+      <div class="card">
+        <h3>٤ — الإعلانات والظهور المميز (Advertising &amp; Promoted Listings)</h3>
+        <p><strong>الوصف:</strong> إيراد من إعلانات ممولة وتثبيت عروض في الصدارة وباقات ظهور أعلى للبائعين.</p>
+        <ul style="margin: 0.75rem 0 0 1.25rem;">
+          <li><strong>تثبيت منافسة في الصفحة الأولى:</strong> رسوم يومية أو أسبوعية (مثلاً 50–200 ريال/أسبوع).</li>
+          <li><strong>بانر إعلاني:</strong> للجهات الراعية أو الموردين (صناعات، خدمات لوجستية، تأمين) بأسعار CPM أو شهري ثابت.</li>
+          <li><strong>إشعارات مدفوعة:</strong> إرسال منافسة مستهدفة لشريحة معينة من المشترين مقابل رسم إضافي.</li>
+        </ul>
+      </div>
+
+      <div class="card">
+        <h3>٥ — خدمة التسعير والتحليلات (Pricing &amp; Analytics as a Service)</h3>
+        <p><strong>الوصف:</strong> تقارير وتوصيات تسعير وبيانات سوق وتاريخ ترسيات وعروض منافسين للشركات والمصانع والمخازن.</p>
+        <ul style="margin: 0.75rem 0 0 1.25rem;">
+          <li>اشتراك شهري أو سنوي للوصول لواجهة التحليلات (مثلاً 299–1,499 ريال/شهر حسب العمق والقطاع).</li>
+          <li>تقارير مخصصة (Ad-hoc reports) لقطاع معين أو جهة معينة بسعر ثابت لكل تقرير.</li>
+          <li>هذه الخدمة تميّز المنصة وتبرر عمولات أعلى أو اشتراكات أعلى للشركات الكبرى.</li>
+        </ul>
+      </div>
+
+      <div class="card">
+        <h3>٦ — التكاملات وواجهات برمجة التطبيقات (API &amp; Integrations)</h3>
+        <p><strong>الوصف:</strong> رسوم على ربط أنظمة ERP أو المحاسبة أو المخازن بالمنصة عبر API أو Webhooks.</p>
+        <ul style="margin: 0.75rem 0 0 1.25rem;">
+          <li>باقة «API أساسي» محدودة الاستدعاءات شهرياً، وباقة «API احترافي» أو «Enterprise» بعدد استدعاءات أعلى ودعم مخصص.</li>
+          <li>رسوم إعداد (Setup fee) لمرة واحدة + رسوم شهرية أو سنوية متكررة.</li>
+        </ul>
+      </div>
+
+      <div class="card">
+        <h3>٧ — الضمان والخدمات المالية (Escrow &amp; Financial Services)</h3>
+        <p><strong>الوصف:</strong> إيرادات من خدمة الضمان (Escrow) أو رسوم على المعاملات المضمونة.</p>
+        <ul style="margin: 0.75rem 0 0 1.25rem;">
+          <li><strong>مرجع:</strong> منصات الضمان في المنطقة قد تفرض نحو <strong>5% من قيمة المعاملة + ضريبة القيمة المضافة</strong> (مثال: eecrow 5% + 5% VAT ≈ 5.25% إجمالي). منصتنا يمكن أن تتفق مع جهة ضمان معتمدة وتأخذ جزءاً من الرسوم أو عمولة إضافية (مثلاً 0.5%–1.5% من قيمة الصفقة) كوسيط.</li>
+          <li>خيارات: ضمان كامل للمعاملة، أو ضمان جزئي، أو تأمين قصير الأجل للتمويل — كلها قابلة لتحويلها إلى قنوات إيراد واضحة.</li>
+        </ul>
+      </div>
+
+      <div class="card">
+        <h3>٨ — رسوم الدفع ومعالجة المدفوعات (Payment Processing Margin)</h3>
+        <p><strong>الوصف:</strong> الفرق بين ما تفرضه بوابة الدفع (مثلاً مدى، فيزا، ماستركارد) والرسوم التي تفرضها المنصة على المستخدم، أو رسوم ثابتة للمعاملة.</p>
+        <ul style="margin: 0.75rem 0 0 1.25rem;">
+          <li><strong>مرجع محلي:</strong> بعض البوابات في السعودية تفرض نحو 1% لمدى و2.5% + 1 ريال لبطاقات الائتمان. المنصة يمكن أن تضيف هامشاً صغيراً (0.2%–0.5%) أو رسوماً ثابتة للمعاملة بعد الاتفاق مع البوابة، مع الالتزام بشفافية المستخدم.</li>
+        </ul>
+      </div>
+
+      <div class="card">
+        <h3>٩ — خدمات إضافية (قيمة مضافة)</h3>
+        <ul style="margin: 0 0 0 1.25rem;">
+          <li><strong>شراء كراسات الشروط:</strong> إذا كانت المنصة تعرض منافسات مرتبطة بكراسات (مثل اعتماد)، يمكن عقد اتفاقيات مع الجهات الطارحة أو وسيط لتوزيع الكراسات ورسوم التحميل.</li>
+          <li><strong>التحقق والاعتماد:</strong> رسوم للتحقق من هوية البائعين/المشترين أو اعتماد ملفهم (مرة واحدة أو تجديد سنوي).</li>
+          <li><strong>تدريب واستشارات:</strong> ورش عمل أو استشارات في إدارة المنافسات والتسعير للشركات بمقابل.</li>
+        </ul>
+      </div>
+
+      <div class="table-wrap" style="margin-top: 1.5rem;">
+        <table>
+          <thead>
+            <tr>
+              <th>قناة الدخل</th>
+              <th>نموذج التحصيل</th>
+              <th>نطاق تقديري (مرجعي)</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr><td>عمولات المعاملات</td><td>نسبة من قيمة الترسية</td><td>0.5%–4% حسب حجم وفئة الصفقة</td></tr>
+            <tr><td>رسوم الإدراج</td><td>لكل منافسة أو باقة</td><td>50–500 ريال/منافسة أو اشتراك غير محدود</td></tr>
+            <tr><td>اشتراكات</td><td>شهري/سنوي</td><td>199–999 ريال/شهر (أساسي–برو)، enterprise حسب الطلب</td></tr>
+            <tr><td>إعلانات وظهور مميز</td><td>CPM أو ثابت/أسبوعي</td><td>50–200 ريال/أسبوع تثبيت، بانرات حسب العرض</td></tr>
+            <tr><td>التسعير والتحليلات</td><td>اشتراك أو تقرير مخصص</td><td>299–1,499 ريال/شهر أو تقرير مخصص</td></tr>
+            <tr><td>API وتكاملات</td><td>إعداد + شهري/سنوي</td><td>إعداد مرة واحدة + باقة شهرية حسب الاستدعاءات</td></tr>
+            <tr><td>ضمان / Escrow</td><td>نسبة من المعاملة أو عمولة وساطة</td><td>0.5%–1.5% من قيمة الصفقة أو جزء من رسوم الطرف الثالث</td></tr>
+            <tr><td>معالجة الدفع</td><td>هامش أو رسوم معاملة</td><td>0.2%–0.5% أو رسوم ثابتة صغيرة مع الشفافية</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="card" style="margin-top: 1.5rem;">
+        <h3>سيناريو تقديري للإيرادات (للمستثمر)</h3>
+        <p>الأرقام أدناه افتراضية للتوضيح فقط وليست التزاماً أو توقعات مضمونة. الهدف إظهار كيف تجمع قنوات الدخل المختلفة:</p>
+        <ul style="margin: 0.75rem 0 0 1.25rem;">
+          <li><strong>السنة 1–2 (نمو مبكر):</strong> افترض حجم معاملات 50–100 مليون ريال، عمولة متوسطة 1.5% → 0.75–1.5 مليون ريال من العمولات. إضافة 200–500 مشترك اشتراكات (متوسط 400 ريال/شهر) → 0.96–2.4 مليون ريال. إعلانات وظهور مميز وتقارير محدودة → 0.2–0.5 مليون. <strong>إجمالي تقديري: 2–4.5 مليون ريال سنوياً</strong> في مرحلة النمو الأولى.</li>
+          <li><strong>السنة 3–5 (توسع):</strong> مع نمو حجم المعاملات إلى 300–500 مليون ريال وزيادة قاعدة المشتركين وخدمات التسعير والـ API، يمكن أن يصل إجمالي الإيرادات المتعددة المصادر إلى <strong>10–25 مليون ريال سنوياً</strong> أو أكثر حسب الاختراق السوقي والكفاءة التشغيلية.</li>
+        </ul>
+        <p style="margin-top: 0.75rem;"><strong>ملاحظة:</strong> النتائج الفعلية تعتمد على حجم السوق، قبول المستخدمين، المنافسة، والتكاليف التشغيلية (تقنية، تسويق، دعم، امتثال). يُنصح بإعداد نموذج مالي مفصل (Excel) مع افتراضات قابلة للتعديل.</p>
+      </div>
+
+      <div class="cta-box">
+        <h3>خلاصة قنوات الدخل</h3>
+        <p>عمولات المعاملات + رسوم إدراج + اشتراكات + إعلانات وظهور مميز + خدمة التسعير والتحليلات + API وتكاملات + ضمان وخدمات مالية + هامش معالجة الدفع + خدمات إضافية = نمو إيرادات متعدد المصادر مع توسع قاعدة المستخدمين وحجم المعاملات، وتقليل الاعتماد على مصدر واحد مما يعزز جاذبية المشروع للمستثمر.</p>
+      </div>
+    </section>
+
+    <!-- Features -->
+    <section id="features" class="fade-in">
+      <h2 class="section-title">المميزات التي يجب أن تتوفر في المشروع</h2>
+      <p class="section-subtitle">ميزات تفصيلية تميز المنصة وتضمن الأمان والمنافسة العادلة والامتثال للأنظمة.</p>
+      <div class="card">
+        <h3>حوكمة المزادات والمنافسات</h3>
+        <ul style="margin: 0 0 0 1.25rem;">
+          <li>قواعد نشر واضحة: شروط الأهلية، الوثائق المطلوبة، التصنيفات والفئات.</li>
+          <li>مواعيد فتح وإغلاق التقديم آلياً مع إشعارات للمقدمين.</li>
+          <li>معايير ترسية محددة مسبقاً (سعر، جودة، زمن تنفيذ، محتوى محلي) مع إمكانية تقييم متعدد المعايير.</li>
+          <li>دعم المزاد العلني والمزاد العكسي والممارسة المحدودة حسب الحاجة.</li>
+        </ul>
+      </div>
+      <div class="card">
+        <h3>منع التلاعب والنزاهة</h3>
+        <ul style="margin: 0 0 0 1.25rem;">
+          <li>كشف العروض الوهمية أو التنسيق غير المشروع (تحليل سلوك، عناوين، أجهزة).</li>
+          <li>التحقق من الهوية (ربط بالسجل التجاري، نفاذ، أو مزود تحقق معتمد).</li>
+          <li>سجلات تدقيق (Audit logs) كاملة لجميع الإجراءات: من نشر المنافسة حتى الترسية والدفع.</li>
+          <li>ضمان ابتدائي ونهائي وفق الأنظمة (مثلاً 1%–2% ابتدائي، 5% نهائي عند الفوز).</li>
+        </ul>
+      </div>
+      <div class="card">
+        <h3>الشفافية والأرشفة</h3>
+        <ul style="margin: 0 0 0 1.25rem;">
+          <li>إعلان النتائج وأسعار الترسية (حيث يسمح النظام والقانون) مع احترام سرية البيانات التجارية.</li>
+          <li>أرشفة المنافسات والترسيات السابقة للاستعلام والتحليل والتسعير.</li>
+          <li>تقارير إحصائية عامة (عدد المنافسات، القطاعات، المناطق) لتعزيز الثقة.</li>
+        </ul>
+      </div>
+      <div class="card">
+        <h3>الدفع الآمن والتكامل المالي</h3>
+        <ul style="margin: 0 0 0 1.25rem;">
+          <li>ربط بوابات دفع إلكتروني معتمدة في المملكة (مدى، فيزا، ماستركارد، Apple Pay حسب الاتفاقيات).</li>
+          <li>خيار خدمة الضمان (Escrow) لضمان تسليم البضاعة/الخدمة قبل تحرير المبلغ للبائع.</li>
+          <li>التوافق مع ضوابط ساما للتعامل مع مقدمي خدمات الدفع الإلكتروني إن انطبقت.</li>
+        </ul>
+      </div>
+      <div class="card">
+        <h3>تطبيق جوال وتجربة المستخدم</h3>
+        <ul style="margin: 0 0 0 1.25rem;">
+          <li>تطبيق واحد لأيفون وأندرويد (تقنية Flutter) لتجربة موحدة وسريعة.</li>
+          <li>إشعارات فورية: منافسات جديدة، اقتراب موعد الإغلاق، نتائج الترسية، رسائل الدعم.</li>
+          <li>واجهة عربية كاملة متجاوبة مع الشاشات المختلفة.</li>
+        </ul>
+      </div>
+      <div class="card">
+        <h3>لوحة التحكم والإدارة الداخلية (Laravel)</h3>
+        <ul style="margin: 0 0 0 1.25rem;">
+          <li>إدارة التطبيق: محتوى، إعلانات، إعدادات عامة، إدارة المستخدمين والصلاحيات.</li>
+          <li>المحاسبة: فواتير، مقبوضات، مصروفات، تقارير مالية، ربط مع البنوك وبوابات الدفع.</li>
+          <li>الموارد البشرية (HR): موظفون، إجازات، رواتب، أداء، أدوار وصلاحيات.</li>
+          <li>المخازن والمستودعات: جرد، حركات، ربط مع الطلبات والمزادات.</li>
+          <li>التقارير والتحليلات: لوحات معلومات (Dashboards) لكل قسم وقرار إداري.</li>
+        </ul>
+      </div>
+      <div class="card">
+        <h3>خدمة التسعير والتحليلات</h3>
+        <ul style="margin: 0 0 0 1.25rem;">
+          <li>أدوات مساعدة للتسعير بناءً على بيانات السوق والترسيات السابقة والعروض التاريخية.</li>
+          <li>تقارير قابلة للتصدير (Excel، PDF) للشركات والمصانع والمخازن.</li>
+          <li>إمكانية تخصيص التنبيهات حسب القطاع والمنطقة وقيمة المنافسة.</li>
+        </ul>
+      </div>
+      <div class="card">
+        <h3>الربط الحكومي والامتثال</h3>
+        <ul style="margin: 0 0 0 1.25rem;">
+          <li>التوافق مع متطلبات هيئة الزاتكا للفواتر الإلكترونية (FATOORA، المرحلة الأولى والثانية): إنشاء وتخزين الفواتر بصيغ معتمدة (XML أو PDF/A-3 مع XML)، والتكامل مع نظام الهيئة عند الالتزام.</li>
+          <li>التحقق من السجل التجاري والاشتراطات النظامية (حيث ينطبق) عبر البوابات الحكومية المعتمدة.</li>
+          <li>الالتزام بضوابط الأمن السيبراني واللائحة التنفيذية لنظام التعاملات الإلكترونية في المملكة.</li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- Backend & ERP -->
+    <section class="fade-in">
+      <h2 class="section-title">لوحة التحكم (Back-end) ونظام ERP</h2>
+      <p class="section-subtitle">Laravel Dashboard يتحكم في التطبيق والإعلانات وجميع وظائف المنصة.</p>
+      <div class="grid-2">
+        <div class="card">
+          <h3>إدارة التطبيق والإعلانات</h3>
+          <p>التحكم في محتوى التطبيق، إدارة الحملات الإعلانية، تثبيت العروض والإعلانات المميزة.</p>
+        </div>
+        <div class="card">
+          <h3>المحاسبة</h3>
+          <p>الفواتير، المقبوضات، المصروفات، التقارير المالية، الربط مع البنوك وبوابات الدفع.</p>
+        </div>
+        <div class="card">
+          <h3>الموارد البشرية (HR)</h3>
+          <p>الموظفون، الإجازات، الرواتب، الأداء، الصلاحيات والأدوار.</p>
+        </div>
+        <div class="card">
+          <h3>المخازن والمستودعات</h3>
+          <p>جرد، حركات، تكامل مع المزادات والطلبات، تقارير مخزنية.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Target Segments -->
+    <section class="fade-in">
+      <h2 class="section-title">الفئات المستهدفة</h2>
+      <p class="section-subtitle">من المصانع والشركات إلى المخازن والعملاء الأفراد.</p>
+      <div class="tech-badges">
+        <span class="badge">المصانع والمنشآت الصناعية</span>
+        <span class="badge">الشركات الكبرى والمتوسطة</span>
+        <span class="badge">المخازن ومستودعات التخزين</span>
+        <span class="badge">التجار وموزعون الجملة</span>
+        <span class="badge">الجهات غير الربحية</span>
+        <span class="badge">الجهات شبه الحكومية</span>
+        <span class="badge">المؤسسات الصغيرة والمتوسطة (SMEs)</span>
+        <span class="badge">المشترون الأفراد</span>
+      </div>
+      <div class="card" style="margin-top: 1.5rem;">
+        <h3>خدمة التسعير</h3>
+        <p>المنصة تقدم خدمة تسعير تساعد البائعين والمشترين على تحديد أسعار عادلة بناءً على بيانات السوق والمنافسات السابقة، مما يزيد الثقة ويحسّن حجم الصفقات.</p>
+      </div>
+    </section>
+
+    <!-- Competitors -->
+    <section id="competitors" class="fade-in">
+      <h2 class="section-title">تحليل المنافسين وكيف نتميز</h2>
+      <p class="section-subtitle">مقارنة مع منصات تنافس، منافسات، ترسبات، تندرز أليرتس، مناقص.</p>
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr>
+              <th>المنصة</th>
+              <th>المميزات</th>
+              <th>العيوب</th>
+              <th>كيف نتميز</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><strong>تنافس (tanafos.sa)</strong></td>
+              <td class="pros">تركيز على القطاع غير الربحي، سوق إلكتروني، شراء موحد، واجهة منافسات.</td>
+              <td class="cons">قد يكون نطاق الفئات محدوداً، تحتاج تحقق من مدى تغطية القطاع الخاص الكامل.</td>
+              <td>نغطي القطاع الخاص والربحي وغير الربحي مع ERP وتطبيق جوال وخدمة تسعير وتكامل حكومي ودفع.</td>
+            </tr>
+            <tr>
+              <td><strong>منافسات (monafasat.sa)</strong></td>
+              <td class="pros">منصة سحابية سعودية، رحلة كاملة من النشر للترسية، تقييم متعدد، دليل موردين، تكامل ERP و API، لا رسوم تسجيل، متوافقة مع رؤية 2030.</td>
+              <td class="cons">رسوم على الموردين لكل فرصة تقديم، قد تكون التكلفة عائقاً لـ SMEs.</td>
+              <td>نموذج رسوم أوضح مع قيمة مضافة (تسعير، تطبيق جوال، تجربة مستخدم موحدة، أمان وربط حكومي ودفع).</td>
+            </tr>
+            <tr>
+              <td><strong>ترسبات (trsyat.sa)</strong></td>
+              <td class="pros">تركيز على الترسيات والعطاءات.</td>
+              <td class="cons">محدودية المعلومات المتاحة من الموقع، قد يكون التركيز ضيقاً.</td>
+              <td>منصة شاملة: مزادات + ERP + محاسبة + HR + تسعير + تطبيق + أمان ودفع.</td>
+            </tr>
+            <tr>
+              <td><strong>تندرز أليرتس (tendersalerts.com)</strong></td>
+              <td class="pros">تجمع مناقصات اعتماد، إشعارات مخصصة، كراسات وجداول Excel، تحليل منافسين وترسيات سابقة، لوحة كانبان، API، دعم فني.</td>
+              <td class="cons">مكمّل لاعتماد وليس منصة مزادات مستقلة؛ التقديم الرسمي يبقى عبر اعتماد، اشتراك مدفوع.</td>
+              <td>نكون منصة مزادات ومنافسات مستقلة مع إدارة كاملة وتطبيق ودفع وتكامل حكومي، مع إمكانية دمج تنبيهات من اعتماد لاحقاً إذا لزم.</td>
+            </tr>
+            <tr>
+              <td><strong>مناقص (munaqes.com)</strong></td>
+              <td class="pros">إضافة مناقصات، طلبات مشاركة، فرق عمل، إحصائيات وتقييم نتائج، تطبيق جوال، خطط مدفوعة.</td>
+              <td class="cons">أسعار باقات مرتفعة نسبياً (آلاف الريالات سنوياً)، قد لا تركز على المزادات الحكومية أو التكامل مع اعتماد.</td>
+              <td>نوفّر باقات مرنة مع تركيز على المزادات والحوكمة والأمان والربط الحكومي والدفع، وتجربة واحدة للمستخدم والادارة.</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <!-- Tech Stack -->
+    <section id="tech" class="fade-in">
+      <h2 class="section-title">التقنيات والسيرفر وقاعدة البيانات</h2>
+      <p class="section-subtitle">اللغات والأدوات المستخدمة في بناء المنصة.</p>
+      <div class="card">
+        <h3>واجهة المستخدم (تطبيق الجوال)</h3>
+        <p><strong>Flutter</strong> — تطبيق واحد لأيفون وأندرويد، واجهة سريعة ومتجاوبة، تحديثات موحدة.</p>
+        <div class="tech-badges">
+          <span class="badge">Flutter</span>
+          <span class="badge">Dart</span>
+        </div>
+      </div>
+      <div class="card">
+        <h3>الخادم والـ Back-end</h3>
+        <p><strong>Laravel</strong> — لوحة تحكم وإدارة، API للتطبيق، إدارة المستخدمين، المحاسبة، HR، الإعلانات، المزادات.</p>
+        <p><strong>VPS Dedicated</strong> — سيرفر مخصص لأداء عالٍ وأمان أفضل وتوطين البيانات عند الحاجة.</p>
+        <div class="tech-badges">
+          <span class="badge">Laravel</span>
+          <span class="badge">PHP</span>
+          <span class="badge">VPS Dedicated</span>
+        </div>
+      </div>
+      <div class="card">
+        <h3>قاعدة البيانات</h3>
+        <p><strong>MySQL</strong> — تخزين المستخدمين، المزادات، العروض، المعاملات، المحاسبة، السجلات.</p>
+        <div class="tech-badges">
+          <span class="badge">MySQL</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- Security & Payment -->
+    <section class="fade-in">
+      <h2 class="section-title">الحماية والأمان والربط الإلكتروني</h2>
+      <p class="section-subtitle">ضمان أمان البيانات والمعاملات والامتثال للأنظمة السعودية (الزاتكا، ساما، الأمن السيبراني، التعاملات الإلكترونية).</p>
+      <div class="card">
+        <h3>الحماية والأمان التقني</h3>
+        <ul style="margin: 0 0 0 1.25rem;">
+          <li><strong>النقل:</strong> استخدام HTTPS (TLS 1.2 فأعلى) لتشفير كل البيانات أثناء النقل.</li>
+          <li><strong>التخزين:</strong> تشفير البيانات الحساسة في السكون (مثلاً حقول الدفع والهوية) وفق أفضل الممارسات.</li>
+          <li><strong>المصادقة:</strong> مصادقة ثنائية (2FA) أو متعددة العوامل (MFA) لحسابات الإدارة والوصول الحساس.</li>
+          <li><strong>الصلاحيات:</strong> نموذج صلاحيات دقيق (RBAC) بحيث كل دور يمتلك فقط الصلاحيات المطلوبة.</li>
+          <li><strong>الاختبارات:</strong> إجراء اختبارات اختراق (Penetration testing) دورية ومراجعة الثغرات.</li>
+          <li><strong>سجلات التدقيق:</strong> تسجيل كامل للإجراءات (من نشر منافسة، تقديم عرض، ترسية، دفع) مع عدم إمكانية التعديل اللاحق.</li>
+          <li><strong>الامتثال:</strong> الالتزام بضوابط الأمن السيبراني الصادرة عن الهيئة الوطنية للأمن السيبراني، واللائحة التنفيذية لنظام التعاملات الإلكترونية في المملكة.</li>
+        </ul>
+      </div>
+      <div class="card">
+        <h3>بوابات الدفع الإلكتروني</h3>
+        <ul style="margin: 0 0 0 1.25rem;">
+          <li>الربط مع بوابات دفع معتمدة في المملكة (مدى، فيزا، ماستركارد، Apple Pay عبر شركاء معتمدين) لتحصيل العمولات والاشتراكات ومدفوعات المشترين.</li>
+          <li>مراعاة <strong>ضوابط ساما للتعامل مع مقدمي خدمات الدفع الإلكتروني ودعم التجارة الإلكترونية</strong> إن انطبقت على نموذج المنصة.</li>
+          <li>دعم خيار الضمان (Escrow) بالتعاون مع جهة معتمدة لضمان تحرير المبلغ للبائع بعد استلام البضاعة/الخدمة.</li>
+          <li>معالجة شفافة للعمولات والضريبة (ضريبة القيمة المضافة 15%) وفق تعليمات الزاتكا وساما.</li>
+        </ul>
+      </div>
+      <div class="card">
+        <h3>الربط مع الجهات الحكومية في المملكة</h3>
+        <ul style="margin: 0 0 0 1.25rem;">
+          <li><strong>هيئة الزاتكا — الفواتر الإلكترونية (FATOORA):</strong> المرحلة الأولى (إنشاء الفاتورة): توليد فواتير إلكترونية وفق المواصفات (XML أو PDF/A-3 مع XML مضمن). المرحلة الثانية (التكامل): ربط النظام مع نظام الهيئة عبر البوابة (Fatoora.zatca.gov.sa)، وإتمام عملية التسجيل (OTP، CSID، CSR) والامتثال الفني. تطبيق ذلك على كل فواتير المنصة الخاضعة للضريبة.</li>
+          <li><strong>التحقق من السجل التجاري والاشتراطات:</strong> الاستفادة من البوابات الحكومية للتحقق من أسماء المنشآت والسجلات عند التسجيل أو التقديم حيث ينطبق.</li>
+          <li><strong>هيئة الحكومة الرقمية والأمن السيبراني:</strong> مراعاة معايير الحكومة الرقمية وضوابط الأمن السيبراني للبيانات عند التعامل مع أي بيانات حكومية أو شبه حكومية.</li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- Branding -->
+    <section class="fade-in">
+      <h2 class="section-title">الهوية المقترحة: الاسم والألوان والشعار</h2>
+      <p class="section-subtitle">اقتراح جاهز للتطوير مع مصمم.</p>
+      <div class="card">
+        <h3>الاسم المقترح: مزادك</h3>
+        <p>يعبّر عن "مزادك" — منصتك للمزادات. بديل: «سِمَاء المزادات» (الشفافية والسماء العالية) أو «بيدر» (Bidr — للمزادات والعطاءات).</p>
+      </div>
+      <div class="card">
+        <h3>الألوان المقترحة</h3>
+        <p>
+          <strong>أخضر أساسي:</strong> <span style="display:inline-block;width:20px;height:20px;background:#0d5c2e;border-radius:4px;vertical-align:middle;"></span> #0d5c2e (ثقة، انتماء للسوق السعودي)<br />
+          <strong>ذهبي:</strong> <span style="display:inline-block;width:20px;height:20px;background:#c9a227;border-radius:4px;vertical-align:middle;"></span> #c9a227 (قيمة، مزادات، premium)<br />
+          <strong>أزرق داكن:</strong> <span style="display:inline-block;width:20px;height:20px;background:#1a365d;border-radius:4px;vertical-align:middle;"></span> #1a365d (احترافية، تقنية)
+        </p>
+      </div>
+      <div class="card">
+        <h3>الشعار (Logo)</h3>
+        <p>مساحة الشعار في أعلى الصفحة جاهزة لرفع ملف الشعار (PNG/SVG). اقتراح رمز: مطرقة مزاد + منحنى تصاعدي (سعر) أو أيقونة درع (أمان) مع نص «مزادك» بالألوان أعلاه.</p>
+      </div>
+    </section>
+
+    <!-- References -->
+    <section id="references" class="fade-in">
+      <h2 class="section-title">مراجع ومصادر (للمراجعة والتدقيق)</h2>
+      <p class="section-subtitle">جزء من المصادر التي تم الاستناد إليها في الأرقام والنماذج — يُنصح بالتحقق المباشر من المصادر الرسمية.</p>
+      <div class="card">
+        <ul style="margin: 0 0 0 1.25rem; list-style: none;">
+          <li>• <strong>الحكومة الرقمية / وزارة المالية:</strong> بيانات العقود الحكومية 2024، منصة اعتماد، نظام المنافسات والمشتريات الحكومية.</li>
+          <li>• <strong>هيئة الزاتكا (zatca.gov.sa):</strong> الفواتر الإلكترونية FATOORA، المرحلة الأولى والثانية، الدليل الفني والامتثال.</li>
+          <li>• <strong>ساما (sama.gov.sa / rulebook.sama.gov.sa):</strong> ضوابط الأمن السيبراني، قواعد التعامل مع مقدمي خدمات الدفع الإلكتروني.</li>
+          <li>• <strong>رؤية 2030 ومنشآت:</strong> مساهمة المنشآت الصغيرة والمتوسطة في الناتج المحلي، تفضيل المحتوى المحلي والـ SMEs في المشتريات (قرار مجلس الوزراء 245).</li>
+          <li>• <strong>منصات مرجعية:</strong> تندرز أليرتس (tendersalerts.com) — خطط وأسعار؛ مناقص (munaqes.com) — باقات؛ منافسات (monafasat.sa) — نموذج الخدمة.</li>
+          <li>• <strong>نماذج إيراد B2B عالمية:</strong> عمولات منصات المزادات والأسواق (Take rate 1%–10% حسب نوع الخدمة)، رسوم إدراج، اشتراكات، Escrow (مثال eecrow 5% + VAT).</li>
+        </ul>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <p>مزادك — منصة المزادات الآمنة | دراسة جدوى ومستند المستثمر | المملكة العربية السعودية</p>
+  </footer>
+
+  <script>
+    (function () {
+      var slider = document.getElementById('slider');
+      var prev = document.querySelector('.slider-btn.prev');
+      var next = document.querySelector('.slider-btn.next');
+      var dotsContainer = document.getElementById('sliderDots');
+      var slides = slider ? slider.querySelectorAll('.slide') : [];
+      var currentIndex = 0;
+
+      function updateDots() {
+        if (!dotsContainer || !slides.length) return;
+        dotsContainer.innerHTML = '';
+        slides.forEach(function (_, i) {
+          var btn = document.createElement('button');
+          btn.type = 'button';
+          btn.setAttribute('aria-label', 'الشريحة ' + (i + 1));
+          if (i === currentIndex) btn.classList.add('active');
+          btn.addEventListener('click', function () {
+            var slide = slider.querySelectorAll('.slide')[i];
+            if (slide) slide.scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'center' });
+          });
+          dotsContainer.appendChild(btn);
+        });
+      }
+
+      function setIndex() {
+        if (!slider || !slides.length || !dotsContainer) return;
+        var containerRect = slider.getBoundingClientRect();
+        var center = containerRect.left + containerRect.width / 2;
+        var idx = 0;
+        slides.forEach(function (slide, i) {
+          var r = slide.getBoundingClientRect();
+          if (r.left <= center && r.right >= center) idx = i;
+        });
+        currentIndex = idx;
+        dotsContainer.querySelectorAll('button').forEach(function (btn, i) {
+          btn.classList.toggle('active', i === currentIndex);
+        });
+      }
+
+      if (slider && prev && next) {
+        prev.addEventListener('click', function () {
+          var w = slider.offsetWidth;
+          slider.scrollBy({ left: document.documentElement.dir === 'rtl' ? -w : w, behavior: 'smooth' });
+        });
+        next.addEventListener('click', function () {
+          var w = slider.offsetWidth;
+          slider.scrollBy({ left: document.documentElement.dir === 'rtl' ? w : -w, behavior: 'smooth' });
+        });
+        slider.addEventListener('scroll', setIndex);
+      }
+
+      if (dotsContainer && slides.length) {
+        updateDots();
+        setIndex();
+      }
+
+      var fadeEls = document.querySelectorAll('.fade-in');
+      function checkFade() {
+        fadeEls.forEach(function (el) {
+          var rect = el.getBoundingClientRect();
+          if (rect.top < window.innerHeight - 80) el.classList.add('visible');
+        });
+      }
+      window.addEventListener('scroll', checkFade);
+      window.addEventListener('load', checkFade);
+    })();
+  </script>
+</body>
+</html>
